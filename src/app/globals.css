@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: hsla(260, 5%, 13%, 1);
+  --foreground: hsl(0, 0%, 100%);
+  --accent: hsla(78, 98%, 60%, 1);
+  --surface: hsla(255, 4%, 23%, 1);
+  --neutral-light: hsla(0, 10%, 93%, 1);
 }
 
 @theme inline {
@@ -10,17 +13,81 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --color-neutral-light: var(--neutral-light);
+
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer components {
+
+  :is(h1, h2, h3, h4) {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-2xl;
+  }
+
+  h2 {
+    @apply text-xl;
+  }
+
+  h3 {
+    @apply text-base;
+  }
+
+  h4 {
+    @apply text-sm;
+  }
+
+  input {
+    @apply px-4 py-3 rounded-md bg-foreground text-background;
+
+    &:focus {
+      @apply outline-none ring-2 ring-accent/100;
+    }
+
+    &:user-invalid {
+      @apply ring-red-500;
+    }
+  }
+
+  :is(.button, .button-outline, .button-secondary) {
+    @apply px-5 py-2 rounded-md font-bold cursor-pointer text-center;
+  }
+
+  .button {
+    @apply text-background bg-accent;
+
+    &:hover:not(:disabled) {
+      @apply hover:bg-accent/90;
+    }
+  }
+
+  .button-outline {
+    @apply border border-accent text-accent bg-transparent;
+
+    &:hover:not(:disabled) {
+      @apply hover:bg-accent/10;
+    }
+  }
+
+  .button-secondary {
+    @apply text-foreground bg-surface;
+
+    &:hover:not(:disabled) {
+      @apply hover:bg-surface/90;
+    }
+  }
+
+  form>div {
+    @apply flex flex-col gap-2;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), sans-serif;
 }
