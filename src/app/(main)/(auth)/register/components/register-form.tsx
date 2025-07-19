@@ -6,8 +6,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import { postRegister } from '../services';
 import { HttpError } from '@/shared/services/http';
+import { postRegister } from '../../services/auth.service';
 
 export const RegisterSchema = z.object({
     firstname: z.string().min(1, "El nombre es obligatorio"),

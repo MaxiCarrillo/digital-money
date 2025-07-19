@@ -9,9 +9,9 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { toast } from 'sonner'
 import * as z from 'zod'
-import { postLogin } from '../services'
 import { EmailForm } from './email-form'
 import { PasswordForm } from './password-form'
+import { postLogin } from '../../services/auth.service'
 
 export const LoginSchema = z.object({
     email: z.email("Debe ser un correo electrónico válido").min(1, "El correo electrónico es obligatorio"),
