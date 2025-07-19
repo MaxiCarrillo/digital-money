@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/shared/components/navbar/navbar";
 import { Footer } from "@/shared/components/footer/footer";
+import { Toaster } from "sonner";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -27,6 +28,9 @@ export default function RootLayout({
         className={`${openSans.variable}  antialiased min-h-dvh grid grid-rows-[auto_1fr_auto] `}
       >
         {children}
+        <Toaster
+          richColors
+        />
         <Footer />
       </body>
     </html>

@@ -1,10 +1,13 @@
 "use client"
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { FC, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import * as z from 'zod';
 import { postRegister } from '../services';
+import { HttpError } from '@/shared/services/http';
 
 export const RegisterSchema = z.object({
     firstname: z.string().min(1, "El nombre es obligatorio"),
@@ -23,6 +26,7 @@ export type RegisterFormData = z.infer<typeof RegisterSchema>
 
 export const RegisterForm = () => {
 
+    const router = useRouter();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const form = useForm<RegisterFormData>({
@@ -46,8 +50,20 @@ export const RegisterForm = () => {
         try {
             setErrorMessage(null);
             await postRegister(body);
+            toast.success("Cuenta creada exitosamente. Por favor, inicia sesión.");
+            router.push('/register/success');
         } catch (error) {
-            setErrorMessage("No se pudo crear la cuenta. Por favor, verifica los datos e intenta nuevamente.");
+            if (error instanceof HttpError) {
+                const status = error.response.status;
+                if (status === 400) {
+                    setErrorMessage("Datos inválidos. Por favor, verifica los datos e intenta nuevamente.");
+                }
+                if (status === 409) {
+                    setErrorMessage("El correo electrónico ya está en uso. Por favor, utiliza otro.");
+                }
+            } else {
+                setErrorMessage("No se pudo crear la cuenta. Por favor, verifica los datos e intenta nuevamente.");
+            }
         }
     }
 
@@ -101,7 +117,7 @@ export const RegisterForm = () => {
                     <label htmlFor="email" hidden>Correo</label>
                     <input
                         className={form.formState.errors.email && 'ring-red-500'}
-                        type="text"
+                        type="email"
                         id="email"
                         placeholder="Correo electrónico*"
                         autoComplete="email"
@@ -155,7 +171,7 @@ export const RegisterForm = () => {
                         <p className='text-red-500 italic'>{form.formState.errors.phone.message}</p>
                     )}
                 </div>
-                <button type="submit" className="button">Crear cuenta</button>
+                <button type="submit" className="button w-full">Crear cuenta</button>
                 {errorMessage && <p className='text-center text-red-500 italic sm:col-span-2'>{errorMessage}</p>}
             </form>
         </>

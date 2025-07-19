@@ -10,7 +10,7 @@ const RegisterPage = () => {
     return (
         <>
             <Navbar variant='accent' links={links} />
-            <main>
+            <main className='my-4 px-8'>
                 <section className='flex flex-col justify-center gap-4 h-full mx-auto max-w-[800px]'>
                     <RegisterForm />
                 </section>

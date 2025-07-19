@@ -6,7 +6,9 @@ const SuccessPage = () => {
         <>
             <Navbar variant='accent' />
             <main>
-                <SuccessRegistration />
+                <section className='flex flex-col justify-center gap-4 h-full mx-auto max-w-[800px]'>
+                    <SuccessRegistration />
+                </section>
             </main>
         </>
     )

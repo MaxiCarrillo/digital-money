@@ -1,15 +1,17 @@
 "use client"
 
+import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
 import { HttpError } from '@/shared/services/http'
+import { setCookie } from '@/shared/utils/cookieClient'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { toast } from 'sonner'
 import * as z from 'zod'
 import { postLogin } from '../services'
 import { EmailForm } from './email-form'
 import { PasswordForm } from './password-form'
-import { useLocalStorage } from '@/shared/hooks/useLocalStorage'
-import { useRouter } from 'next/navigation'
 
 export const LoginSchema = z.object({
     email: z.email("Debe ser un correo electrónico válido").min(1, "El correo electrónico es obligatorio"),
@@ -21,7 +23,7 @@ export type LoginFormData = z.infer<typeof LoginSchema>
 export const MultiStepForm = () => {
 
     const router = useRouter();
-    const [token, setToken] = useLocalStorage<string | null>('acc_token', null);
+    const [, setToken] = useLocalStorage<string | null>('acc_token', null);
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
     const [step, setStep] = useState<number>(1);
 
@@ -41,9 +43,15 @@ export const MultiStepForm = () => {
     const onSubmitPassword = async (body: LoginFormData) => {
         try {
             const data = await postLogin(body);
+
+            setCookie({
+                name: 'acc_token',
+                value: data.token,
+            })
             setToken(data.token);
-            router.push('/dashboard');
-            setErrorMessage(null);
+
+            toast.success("Inicio de sesión exitoso");
+            router.push('/');
         } catch (error: unknown) {
             if (error instanceof HttpError) {
                 const status = error.response.status;
