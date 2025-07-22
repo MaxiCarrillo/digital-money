@@ -1,23 +1,23 @@
-"use client"
+import { getActivity } from "@/shared/services";
+import { getAcountInfo } from "@/shared/services/account.service";
+import { cookies } from "next/headers";
+import { AccountInfo } from "./components/AccountInfo";
+import { MoneyAndPay } from "./components/MoneyAndPay";
+import { ActivityInfo } from "./components/ActivityInfo";
 
-import { deleteCookie } from "@/shared/utils/cookieClient";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+const DashboardPage = async () => {
 
-const DashboardPage = () => {
-
-    const router = useRouter();
-
-    const handleLogout = () => {
-        localStorage.removeItem('acc_token');
-        deleteCookie('acc_token');
-        router.push('/');
-        toast.success("Sesión cerrada exitosamente.");
-    }
+    const accessToken = (await cookies()).get('acc_token');
+    const accountInfo = accessToken ? await getAcountInfo(accessToken.value) : null;
+    const activities = accountInfo && accessToken ? await getActivity(accountInfo.id, accessToken.value) : null;
 
     return (
-        <div>
-            <button className='button' onClick={handleLogout}>Cerrar sesión</button>
+        <div className="space-y-3">
+            <section className="">
+                <AccountInfo available_amount={accountInfo?.available_amount || 0} />
+            </section>
+            <MoneyAndPay />
+            <ActivityInfo transactions={activities || []} />
         </div>
     )
 }

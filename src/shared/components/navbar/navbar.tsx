@@ -3,6 +3,7 @@ import { ButtonVariant, NavbarVariant } from "@/types";
 import clsx from "clsx";
 import Link from "next/link";
 import { FC } from "react";
+import { ToggleMenu } from "../toggle-menu/toggle-menu";
 
 export interface NavbarLink {
     href: string;
@@ -14,7 +15,10 @@ interface NavbarProps {
     className?: string;
     variant?: NavbarVariant;
     links?: NavbarLink[];
-    username?: string;
+    username?: {
+        name: string;
+        lastname: string;
+    };
 }
 
 export const Navbar: FC<NavbarProps> = ({ className, variant = "default", links, username }) => {
@@ -33,7 +37,7 @@ export const Navbar: FC<NavbarProps> = ({ className, variant = "default", links,
     };
 
     return (
-        <header className={`flex items-center px-4 h-16 ${navbarClasses} ${className}`}>
+        <header className={`flex items-center px-4 h-16 gap-4 ${navbarClasses} ${className}`}>
             <Link href="/">
                 <LogoIcon />
             </Link>
@@ -45,14 +49,19 @@ export const Navbar: FC<NavbarProps> = ({ className, variant = "default", links,
             }
             {
                 username && (
-                    <div className="flex flex-row items-center gap-2 ml-auto">
-                        <div className="flex items-center justify-center bg-accent aspect-square h-10 rounded-md">
-                            <span className="text-xl font-bold text-background">{username.split(" ").map((word) => word[0]).join("")}</span>
+                    <>
+                        <div className="flex flex-row items-center gap-2 ml-auto">
+                            <div className="flex items-center justify-center bg-accent aspect-square h-10 rounded-md">
+                                <span className="text-xl font-bold text-background">
+                                    {username.name[0]}{username.lastname[0]}
+                                </span>
+                            </div>
+                            <Link href="/dashboard" className="font-bold hidden md:block">
+                                Hola, {username.name} {username.lastname}
+                            </Link>
                         </div>
-                        <Link href="/dashboard" className="font-bold hidden md:block">
-                            Hola, {username}
-                        </Link>
-                    </div>
+                        <ToggleMenu username={username} />
+                    </>
                 )
             }
         </header>

@@ -1,6 +1,8 @@
 import { homeData } from "@/data/home";
 import { Card } from "@/shared/components/card/card";
 import { Navbar, NavbarLink } from "@/shared/components/navbar/navbar";
+import { getAcountInfo } from "@/shared/services/account.service";
+import { getUserInfo } from "@/shared/services/user.service";
 import parse from "html-react-parser";
 import { cookies } from "next/headers";
 
@@ -12,10 +14,12 @@ const links: NavbarLink[] = [
 export default async function Home() {
 
   const accessToken = (await cookies()).get('acc_token');
+  const accountInfo = accessToken ? await getAcountInfo(accessToken.value) : null;
+  const userInfo = accessToken && accountInfo ? await getUserInfo(accountInfo.user_id, accessToken.value) : null;
 
   return (
     <>
-      <Navbar links={accessToken ? undefined : links} username={accessToken ? 'Lionel Messi' : undefined} />
+      <Navbar links={accessToken ? undefined : links} username={userInfo ? { name: userInfo.firstname, lastname: userInfo.lastname } : undefined} />
       <main>
         <section className='bg-[url("/images/hero-mobile.png")]  sm:bg-[url("/images/hero.png")] bg-top h-full bg-cover relative flex flex-col justify-between'>
           <div>
