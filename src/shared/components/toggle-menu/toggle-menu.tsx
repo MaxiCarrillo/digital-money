@@ -2,11 +2,8 @@
 
 import MenuIcon from '@/shared/icons/menu';
 import XIcon from '@/shared/icons/x';
-import React, { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react';
 import { MenuItems } from '../menu-items/menu-items';
-import { useRouter } from 'next/navigation';
-import { deleteCookie } from '@/shared/utils/cookieClient';
-import { toast } from 'sonner';
 
 interface ToggleMenuProps {
     username: { name: string; lastname: string };
@@ -16,9 +13,25 @@ export const ToggleMenu: FC<ToggleMenuProps> = ({ username }) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
+    useEffect(() => {
+        if (isOpen) {
+            // Guardar el valor original
+            const originalOverflow = document.body.style.overflow;
+            document.body.style.overflow = 'hidden';
+
+            // Cleanup cuando se cierre o desmonte el componente
+            return () => {
+                document.body.style.overflow = originalOverflow;
+            };
+        }
+    }, [isOpen]);
+
+
     const openMenu = () => {
         setIsOpen(true);
     };
+
+
 
     const closeMenu = () => {
         setIsOpen(false);
@@ -26,7 +39,7 @@ export const ToggleMenu: FC<ToggleMenuProps> = ({ username }) => {
 
     return (
         <>
-            <button className='block  cursor-pointer' onClick={openMenu}>
+            <button className='sm:hidden cursor-pointer' onClick={openMenu}>
                 <MenuIcon className='[&_path]:fill-accent' />
             </button>
             {

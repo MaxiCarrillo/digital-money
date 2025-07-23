@@ -30,16 +30,16 @@ export const Navbar: FC<NavbarProps> = ({ className, variant = "default", links,
 
     const renderLinks = () => {
         return links?.map((link) => (
-            <Link key={link.href} href={link.href} className={`${link.variant}`}>
+            <Link key={link.href} href={link.href} className={`${link.variant} text-xs sm:text-base`}>
                 {link.label}
             </Link>
         ));
     };
 
     return (
-        <header className={`flex items-center px-4 h-16 gap-4 ${navbarClasses} ${className}`}>
+        <header className={`flex items-center px-4 h-16 gap-2 ${navbarClasses} ${className}`}>
             <Link href="/">
-                <LogoIcon />
+                <LogoIcon className="h-[24px] sm:h-[37px]" />
             </Link>
             {
                 links && links.length > 0 &&
@@ -56,7 +56,7 @@ export const Navbar: FC<NavbarProps> = ({ className, variant = "default", links,
                                     {username.name[0]}{username.lastname[0]}
                                 </span>
                             </div>
-                            <Link href="/dashboard" className="font-bold hidden md:block">
+                            <Link href="/dashboard" className="font-bold hidden sm:block">
                                 Hola, {username.name} {username.lastname}
                             </Link>
                         </div>

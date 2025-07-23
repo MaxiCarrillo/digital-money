@@ -13,9 +13,9 @@ interface ActivityInfoProps {
 export const ActivityInfo: FC<ActivityInfoProps> = ({ transactions }) => {
     return (
         <section className='space-y-3'>
-            <div className='flex rounded-lg items-center bg-foreground pl-4 shadow-md'>
-                <SearchIcon className='' />
-                <input className='w-full bg-transparent ring-0' type="search" placeholder='Buscar en tu actividad' />
+            <div className='relative w-full'>
+                <SearchIcon className='absolute left-3 top-1/2 transform -translate-y-1/2' />
+                <input className='w-full pl-9' type="search" placeholder='Buscar en tu actividad' />
             </div>
             <section className='bg-foreground py-8 px-4 sm:px-8 rounded-lg shadow-md'>
                 <h1 className='text-base pb-2 border-b-surface/30 border-b'>Tu actividad</h1>

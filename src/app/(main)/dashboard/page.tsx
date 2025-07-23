@@ -11,13 +11,15 @@ const DashboardPage = async () => {
     const accountInfo = accessToken ? await getAcountInfo(accessToken.value) : null;
     const activities = accountInfo && accessToken ? await getActivity(accountInfo.id, accessToken.value) : null;
 
+    const filteredActivities = activities?.slice(0, 10);
+
     return (
         <div className="space-y-3">
             <section className="">
                 <AccountInfo available_amount={accountInfo?.available_amount || 0} />
             </section>
             <MoneyAndPay />
-            <ActivityInfo transactions={activities || []} />
+            <ActivityInfo transactions={filteredActivities || []} />
         </div>
     )
 }
