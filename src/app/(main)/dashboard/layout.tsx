@@ -18,7 +18,7 @@ const DashboardLayout: FC<PropsWithChildren> = async ({ children }) => {
                 <aside className='hidden sm:block bg-accent'>
                     <MenuItems />
                 </aside>
-                <main className='bg-neutral-light text-background px-8 py-8'>{children}</main>
+                <main className='bg-neutral-light text-background px-8 py-8 space-y-3'>{children}</main>
             </div>
         </>
     )

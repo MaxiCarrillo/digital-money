@@ -14,13 +14,13 @@ const DashboardPage = async () => {
     const filteredActivities = activities?.slice(0, 10);
 
     return (
-        <div className="space-y-3">
+        <>
             <section className="">
                 <AccountInfo available_amount={accountInfo?.available_amount || 0} />
             </section>
             <MoneyAndPay />
             <ActivityInfo transactions={filteredActivities || []} />
-        </div>
+        </>
     )
 }
 
