@@ -31,8 +31,6 @@ export const ToggleMenu: FC<ToggleMenuProps> = ({ username }) => {
         setIsOpen(true);
     };
 
-
-
     const closeMenu = () => {
         setIsOpen(false);
     };
