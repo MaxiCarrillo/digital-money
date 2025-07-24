@@ -9,12 +9,20 @@ import * as z from 'zod';
 import { HttpError } from '@/shared/services/http';
 import { postRegister } from '../../services/auth.service';
 
-export const RegisterSchema = z.object({
+const RegisterSchema = z.object({
     firstname: z.string().min(1, "El nombre es obligatorio"),
     lastname: z.string().min(1, "El apellido es obligatorio"),
     dni: z.string().min(1, "El DNI es obligatorio"),
     email: z.email("Debe ser un correo electrónico válido").min(1, "El correo electrónico es obligatorio"),
-    password: z.string().min(6, "La contraseña debe tener al menos 6 caracteres"),
+    password: z.union([
+        z.string()
+            .min(6, "La contraseña debe tener al menos 6 caracteres")
+            .regex(/[A-Z]/, "La contraseña debe tener al menos una letra mayúscula")
+            .regex(/[a-z]/, "La contraseña debe tener al menos una letra minúscula")
+            .regex(/[0-9]/, "La contraseña debe tener al menos un número")
+            .regex(/[^A-Za-z0-9]/, "La contraseña debe tener al menos un carácter especial"),
+        z.literal("")
+    ]),
     repassword: z.string().min(6, "La confirmación de contraseña debe tener al menos 6 caracteres"),
     phone: z.string().min(1, "El teléfono es obligatorio"),
 }).refine((data) => data.password === data.repassword, {

@@ -51,7 +51,7 @@ export const MultiStepForm = () => {
             setToken(data.token);
 
             toast.success("Inicio de sesión exitoso");
-            router.push('/');
+            router.push('/dashboard');
         } catch (error: unknown) {
             if (error instanceof HttpError) {
                 const status = error.response.status;
