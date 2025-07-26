@@ -60,6 +60,10 @@
   .button {
     @apply text-background bg-accent;
 
+    &:disabled {
+      @apply bg-surface/50 text-background cursor-not-allowed;
+    }
+
     &:hover:not(:disabled) {
       @apply hover:bg-accent/90;
     }
