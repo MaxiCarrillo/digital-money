@@ -1,9 +1,9 @@
 import { getActivity } from "@/shared/services";
 import { getAcountInfo } from "@/shared/services/account.service";
 import { cookies } from "next/headers";
-import { AccountInfo } from "./components/AccountInfo";
-import { MoneyAndPay } from "./components/MoneyAndPay";
-import { ActivityInfo } from "./components/ActivityInfo";
+import { AccountInfo } from "./components/account-info";
+import { MoneyAndPay } from "./components/money-and-pay";
+import { ActivityInfo } from "./components/activity-info";
 
 const DashboardPage = async () => {
 

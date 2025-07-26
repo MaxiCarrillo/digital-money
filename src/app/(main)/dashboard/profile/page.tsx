@@ -1,8 +1,8 @@
 import ArrowIcon from '@/shared/icons/arrow'
 import Link from 'next/link'
 import React from 'react'
-import { AliasAndCVUInfo } from './components/AliasAndCVUInfo'
-import { EditProfileData } from './components/EditProfileData'
+import { AliasAndCVUInfo } from './components/alias-and-cvu-info'
+import { EditProfileData } from './components/edit-profile-data'
 import { cookies } from 'next/headers'
 import { getAcountInfo, getUserInfo } from '@/shared/services'
 

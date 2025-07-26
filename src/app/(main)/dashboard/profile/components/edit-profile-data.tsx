@@ -6,7 +6,7 @@ import React, { FC, KeyboardEvent } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import * as z from 'zod';
-import { ProfileInputField } from './ProfileInputField';
+import { ProfileInputField } from './profile-input-field';
 import { useRouter } from 'next/navigation';
 import { patchUserInfo } from '@/shared/services';
 
