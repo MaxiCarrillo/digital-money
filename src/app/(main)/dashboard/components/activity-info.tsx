@@ -3,6 +3,8 @@ import ArrowIcon from '@/shared/icons/arrow';
 import CircleIcon from '@/shared/icons/circle';
 import { formatAmount } from '@/shared/utils/formatAmount';
 import { TransactionType } from '@/types';
+import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 import Link from 'next/link';
 import { FC } from 'react';
 
@@ -25,7 +27,9 @@ export const ActivityInfo: FC<ActivityInfoProps> = ({ transactions }) => {
                             </div>
                             <div className='text-right'>
                                 <p>- {formatAmount(transaction.amount)}</p>
-                                <p className='text-xs text-muted-foreground'>{transaction.dated}</p>
+                                <p className='text-xs text-muted-foreground capitalize'>
+                                    {format(new Date(transaction.dated), "EEEE dd/MM/yyyy", { locale: es })}
+                                </p>
                             </div>
                         </li>
                     )) : (
