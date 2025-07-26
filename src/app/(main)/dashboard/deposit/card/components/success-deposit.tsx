@@ -1,3 +1,4 @@
+import { SuccessCard } from '@/shared/components';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import Link from 'next/link';
@@ -16,6 +17,9 @@ export const SuccessDeposit: FC<SuccessDepositProps> = ({ amount, cvu }) => {
 
     return (
         <>
+            <section className='mb-4'>
+                <SuccessCard message='Ya cargamos el dinero en tu cuenta.'  />
+            </section>
             <section className='bg-background text-foreground p-8 rounded-lg shadow-md space-y-4'>
                 <div>
                     <p>{formatDate(new Date())}</p>
