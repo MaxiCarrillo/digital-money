@@ -1,6 +1,12 @@
-export * from './arrow';
-export * from './check';
-export * from './circle';
-export * from './logo';
-export * from './menu';
-export * from './x';
+export { default as ArrowIcon } from './arrow';
+export { default as CardIcon } from './card';
+export { default as CheckIcon } from './check';
+export { default as CircleIcon } from './circle';
+export { default as CopyIcon } from './copy';
+export { default as LogoIcon } from './logo';
+export { default as MenuIcon } from './menu';
+export { default as PencilIcon } from './pencil';
+export { default as PlusIcon } from './plus';
+export { default as SearchIcon } from './search';
+export { default as XIcon } from './x';
+export { default as UserIcon } from './user';

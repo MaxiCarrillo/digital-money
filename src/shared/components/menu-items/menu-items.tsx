@@ -44,7 +44,7 @@ export const MenuItems: FC<MenuItemsProps> = ({ className, closeMenu }) => {
     const pathname = usePathname();
 
     const isActive = (href: string) => {
-        return pathname === href;
+        return pathname === href || (pathname.startsWith(href) && href !== '/dashboard');
     }
 
     const handleLogout = () => {
