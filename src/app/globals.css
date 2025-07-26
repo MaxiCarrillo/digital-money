@@ -53,6 +53,7 @@
     }
   }
 
+
   :is(.button, .button-outline, .button-secondary) {
     @apply px-5 py-2 rounded-md font-bold cursor-pointer text-center;
   }

@@ -10,3 +10,4 @@ export { default as PlusIcon } from './plus';
 export { default as SearchIcon } from './search';
 export { default as XIcon } from './x';
 export { default as UserIcon } from './user';
+export { default as EditNoteIcon } from './edit-note';

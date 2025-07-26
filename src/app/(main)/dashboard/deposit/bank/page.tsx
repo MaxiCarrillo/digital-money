@@ -7,7 +7,6 @@ const BankPage = async () => {
 
     const accessToken = (await cookies()).get('acc_token');
     const accountInfo = accessToken ? await getAcountInfo(accessToken.value) : null;
-    const userInfo = accessToken && accountInfo ? await getUserInfo(accountInfo.user_id, accessToken.value) : null;
 
     return (
         <section>
