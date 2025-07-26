@@ -21,14 +21,19 @@ export const CardList: FC<CardListProps> = ({ cards }) => {
         return cards.map((card) => (
             <CircleListItem
                 key={card.id}
-                rightContent={<input
-                    type="radio"
-                    className="bg-none border-background ring-0 accent-accent w-4 h-4"
-                    name="cards"
-                    value={card.id}
-                    checked={form.watch('account_id') === String(card.id)}
-                    onChange={() => handleCheckCard(String(card.id))}
-                />}
+                rightContent={
+                    // <div className="relative">
+                    <input
+                        type="radio"
+                        className="bg-accent border-accent ring-0 accent-background w-4 h-4 relative checked:before:block checked:before:absolute checked:before:rounded-full checked:before:bg-accent checked:before:w-full checked:before:h-full checked:before:outline checked:after:absolute checked:after:top-1/2 checked:after:left-1/2 checked:after:bg-background checked:after:w-[10px] checked:after:h-[10px] checked:after:rounded-full checked:after:-translate-x-1/2 checked:after:-translate-y-1/2"
+                        name="cards"
+                        value={card.id}
+                        checked={form.watch('account_id') === String(card.id)}
+                        onChange={() => handleCheckCard(String(card.id))}
+                    />
+                    // <div className="absolute top-0 z-100 left-0 b w-2 h-2 rounded-full  bg-accent"></div>
+                    // </div>
+                }
             >
                 Terminada en {card.number_id.toString().slice(-4)}
             </CircleListItem>
