@@ -27,7 +27,7 @@ export const PeriodFilter = () => {
     }
 
     return (
-        <article className='absolute -bottom-[360px] right-0 w-[300px] bg-foreground py-4 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.3)] z-10 space-y-3'>
+        <article className='absolute -bottom-[360px] right-0 w-[280px] sm:w-[300px] bg-foreground py-4 rounded-lg shadow-[0_0_20px_rgba(0,0,0,0.3)] z-10 space-y-3'>
             <div className='flex items-center justify-between border-b border-background/30 px-4 pb-2'>
                 <p className='font-bold'>Período</p>
                 <button className='text-background/60 cursor-pointer' onClick={handleClearFilter}>Borrar filtros</button>

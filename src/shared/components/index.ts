@@ -1,6 +1,7 @@
 export * from './card/card';
 export * from './circle-list-item/circle-list-item';
 export * from './footer/footer';
+export * from './image-list-item/image-list-item';
 export * from './menu-items/menu-items';
 export * from './navbar/navbar';
 export * from './searchbar-input/searchbar-input';

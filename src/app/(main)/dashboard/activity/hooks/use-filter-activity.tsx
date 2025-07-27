@@ -16,7 +16,6 @@ interface FilterState {
     periodOption: string | null;
 }
 
-
 enum Period {
     TODAY = 'today',
     YESTERDAY = 'yesterday',

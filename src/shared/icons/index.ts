@@ -11,3 +11,5 @@ export { default as SearchIcon } from './search';
 export { default as XIcon } from './x';
 export { default as UserIcon } from './user';
 export { default as EditNoteIcon } from './edit-note';
+export { default as FilterIcon } from './filter';
+export { default as CircleXIcon } from './circle-x';

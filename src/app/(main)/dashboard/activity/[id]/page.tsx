@@ -7,10 +7,6 @@ interface DetailActivityPageProps {
     params: Promise<{ id: string }>;
 }
 
-interface DetailActivityPageProps {
-    params: Promise<{ id: string }>;
-}
-
 const DetailActivityPage = async ({ params }: DetailActivityPageProps) => {
     const { id } = await params;
 
@@ -23,9 +19,9 @@ const DetailActivityPage = async ({ params }: DetailActivityPageProps) => {
             <section>
                 {detailActivity && <Detail detailActivity={detailActivity} />}
             </section>
-            <section className='flex justify-end gap-4 mt-4'>
-                <Link href='/dashboard' className='block button button-secondary bg-background/10 text-background w-full max-w-48 py-3'>Ir al Inicio</Link>
-                <button className='block button w-full max-w-56 py-3'>Descargar comprobante</button>
+            <section className='flex flex-col sm:flex-row sm:justify-end gap-4 mt-4'>
+                <Link href='/dashboard' className='block button button-secondary bg-background/10 text-background w-full sm:max-w-48 py-3'>Ir al Inicio</Link>
+                <button className='block button w-full sm:max-w-56 py-3'>Descargar comprobante</button>
             </section>
         </>
     )

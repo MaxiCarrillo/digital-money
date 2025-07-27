@@ -20,15 +20,16 @@ export const Detail = ({ detailActivity }: DetailActivityPageProps) => {
         <article className='bg-background text-foreground rounded-lg shadow-md p-8 space-y-4'>
             <div className='flex justify-between pb-4 border-b border-accent'>
                 <h1 className='flex gap-2 items-center text-lg text-accent font-bold'><CheckIcon width={18} height={18} /> Aprobada</h1>
-                <p>Creada el {formatDate(new Date(detailActivity?.dated))}</p>
+                <p className='hidden sm:block'>Creada el {formatDate(new Date(detailActivity?.dated))}</p>
             </div>
+            <p className='text-xs text-foreground/60'>Creada el {formatDate(new Date(detailActivity?.dated))}</p>
             <div>
                 <p>Tipo: {detailActivity?.type}</p>
                 <p className='text-accent font-bold'>{formatAmount(detailActivity?.amount)}</p>
             </div>
             <div>
                 <p>Destino</p>
-                <p className='text-accent font-bold capitalize'>{detailActivity?.destination}</p>
+                <p className='text-accent font-bold capitalize'>{detailActivity?.destination || detailActivity.description}</p>
             </div>
             <div>
                 <p>Número de operación</p>

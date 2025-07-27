@@ -1,8 +1,18 @@
-import React from 'react'
+import { getService } from '@/shared/services';
+import { PaymentFilter } from './components/filter'
+import { PaymentList } from './components/payment-list'
 
-const PaymentsPage = () => {
+const PaymentsPage = async () => {
+
+    const services = await getService();
+
     return (
-        <div>Payments Page</div>
+        <>
+            <section className='w-full'>
+                <PaymentFilter />
+            </section>
+            <PaymentList services={services} />
+        </>
     )
 }
 

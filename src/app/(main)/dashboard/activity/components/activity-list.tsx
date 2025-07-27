@@ -6,10 +6,12 @@ import { formatAmount } from '@/shared/utils';
 import { TransactionType } from '@/types';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useFilterActivity } from '../hooks/use-filter-activity';
 import Link from 'next/link';
+import { FilterIcon } from '@/shared/icons';
+import { PeriodFilter } from './period-filter';
 
 const TOTAL_ITEMS_PER_PAGE = 10;
 
@@ -41,6 +43,8 @@ export const ActivityList: FC<ActivityListProps> = ({ transactions }) => {
     const { filteredTransactions, filters } = useFilterActivity(transactions);
     const { currentItems, currentPage, totalPages, paginate } = usePagination(filteredTransactions || [], TOTAL_ITEMS_PER_PAGE);
 
+    const [openFilter, setOpenFilter] = useState(false);
+
     useEffect(() => {
         paginate(1);
     }, [filters]);
@@ -50,8 +54,19 @@ export const ActivityList: FC<ActivityListProps> = ({ transactions }) => {
     }
 
     return (
-        <section className='bg-foreground py-8 px-4 sm:px-8 rounded-lg shadow-md'>
-            <h1 className='text-base pb-2 border-b-surface/30 border-b'>Tu actividad</h1>
+        <section className='bg-foreground py-4 sm:py-8 px-4 sm:px-8 rounded-lg shadow-md'>
+            <div className='flex justify-between pb-2 border-b-surface/30 border-b'>
+                <h1 className='text-base'>Tu actividad</h1>
+                <div className='relative sm:hidden block'>
+                    <button className='flex items-center gap-2 font-semibold' onClick={() => setOpenFilter(!openFilter)}>
+                        <span className='underline'>Filtrar</span>
+                        <FilterIcon width={12} height={12} />
+                    </button>
+                    {
+                        openFilter && <PeriodFilter />
+                    }
+                </div>
+            </div>
             <ul>
                 {currentItems.length > 0 ? renderList(currentItems) : (
                     <CircleListItem isPlaceholder>
