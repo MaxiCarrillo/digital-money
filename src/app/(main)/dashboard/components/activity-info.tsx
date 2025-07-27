@@ -1,3 +1,4 @@
+import { CircleListItem } from '@/shared/components';
 import { SearchbarInput } from '@/shared/components/searchbar-input/searchbar-input';
 import ArrowIcon from '@/shared/icons/arrow';
 import CircleIcon from '@/shared/icons/circle';
@@ -12,33 +13,37 @@ interface ActivityInfoProps {
     transactions: TransactionType[];
 }
 
+const renderList = (transactions: TransactionType[]) => {
+    return transactions.map((transaction) => (
+        <Link href={`/dashboard/activity/${transaction.id}`} key={transaction.id}>
+            <CircleListItem
+                rightContent={
+                    <div className='text-right'>
+                        <p>- {formatAmount(transaction.amount)}</p>
+                        <p className='text-xs text-background/50 capitalize'>
+                            {format(new Date(transaction.dated), "EEEE dd/MM/yyyy", { locale: es })}
+                        </p>
+                    </div>
+                }
+            >
+                {transaction.description}
+            </CircleListItem>
+        </Link>
+    ));
+}
+
 export const ActivityInfo: FC<ActivityInfoProps> = ({ transactions }) => {
+
     return (
         <section className='space-y-3'>
             <SearchbarInput url='/dashboard/activity' />
             <section className='bg-foreground py-8 px-4 sm:px-8 rounded-lg shadow-md'>
                 <h1 className='text-base pb-2 border-b-surface/30 border-b'>Tu actividad</h1>
                 <ul>
-                    {transactions.length > 0 ? transactions.map((transaction) => (
-                        <li key={transaction.id} className='border-b border-b-surface/30 py-2 flex items-center justify-between'>
-                            <div className='flex items-center gap-2'>
-                                <CircleIcon width={32} height={32} />
-                                <p className='text-sm'>{transaction.description}</p>
-                            </div>
-                            <div className='text-right'>
-                                <p>- {formatAmount(transaction.amount)}</p>
-                                <p className='text-xs text-background/50 capitalize'>
-                                    {format(new Date(transaction.dated), "EEEE dd/MM/yyyy", { locale: es })}
-                                </p>
-                            </div>
-                        </li>
-                    )) : (
-                        <li className='border-b border-b-surface/30 py-2 flex items-center justify-between'>
-                            <div className='flex items-center gap-2'>
-                                <CircleIcon width={32} height={32} className='[&_circle]:fill-surface/30' />
-                                <p className='text-sm'>No se encontraron actividades</p>
-                            </div>
-                        </li>
+                    {transactions.length > 0 ? renderList(transactions) : (
+                        <CircleListItem isPlaceholder>
+                            No se encontraron actividades.
+                        </CircleListItem>
                     )}
                 </ul>
                 <Link href='/dashboard/activity' className='mt-4 flex items-center justify-between font-bold hover:[&_svg]:translate-x-1  '>
