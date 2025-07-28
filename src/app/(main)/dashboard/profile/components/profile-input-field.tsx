@@ -11,9 +11,10 @@ interface ProfileInputFieldProps extends React.HTMLAttributes<HTMLInputElement> 
     onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
     placeholder: string;
     type?: string;
+    disabled?: boolean;
 }
 
-export const ProfileInputField: FC<ProfileInputFieldProps> = ({ form, fieldName, label, isEditing, setIsEditing, onKeyDown, type, placeholder, ...props }) => {
+export const ProfileInputField: FC<ProfileInputFieldProps> = ({ form, fieldName, label, isEditing, setIsEditing, onKeyDown, type, placeholder, disabled, ...props }) => {
 
     const handleOnChange = () => {
         setIsEditing((prev) => {
@@ -46,10 +47,10 @@ export const ProfileInputField: FC<ProfileInputFieldProps> = ({ form, fieldName,
                     disabled={!isEditing}
                     {...props}
                 />
-                <button type='button' onClick={handleOnChange}>
+                <button type='button' onClick={handleOnChange} className={`${disabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`} disabled={disabled}>
                     <PencilIcon
                         height={20}
-                        className={`cursor-pointer ${isEditing ? '[&>path]:fill-surface' : '[&>path]:fill-surface/50'} transition`}
+                        className={`${isEditing ? '[&>path]:fill-surface' : '[&>path]:fill-surface/50'} transition`}
                     />
                 </button>
             </div>

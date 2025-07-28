@@ -106,6 +106,7 @@ export const EditProfileData: FC<EditProfileDataProps> = ({ userId, userInfo }) 
                 isEditing={isEditing.email}
                 setIsEditing={setIsEditing}
                 onKeyDown={handleKeyDown}
+                disabled
             />
             <ProfileInputField
                 form={form}
