@@ -1,10 +1,12 @@
 <a name="readme-top"></a>
 <div align="center">
-  
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
+
+<img width="344" height="38" alt="logo" src="https://github.com/user-attachments/assets/567e4ca2-22db-4253-9d1b-f70bd02d5993" />
 
 ## Digital Money
 Digital Money es una aplicación de billetera virtual desarrollada con Next.js. La aplicación permite a los usuarios realizar pagos de servicios, gestionar sus finanzas personales y utilizar la billetera desde dispositivos de escritorio, tabletas y móviles.
@@ -46,6 +48,9 @@ Digital Money es una aplicación de billetera virtual desarrollada con Next.js. 
 - **Gestión de perfil**: Edita tus datos personales y configura tu alias
 
 ### Capturas de pantalla de Digital Money
+
+<img width="1920" height="1080" alt="desktop" src="https://github.com/user-attachments/assets/fa4dabc7-d533-4190-828f-1e0528774978" />
+<img width="1920" height="1080" alt="mobile-shot" src="https://github.com/user-attachments/assets/5e1594d1-a7a9-4d0a-9e53-4d23cf07bedb" />
 
 <!-- Las imágenes se agregarán posteriormente -->
 
