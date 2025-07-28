@@ -1,3 +1,4 @@
+export * from './breadcrumb/breadcrumb';
 export * from './card/card';
 export * from './circle-list-item/circle-list-item';
 export * from './footer/footer';
