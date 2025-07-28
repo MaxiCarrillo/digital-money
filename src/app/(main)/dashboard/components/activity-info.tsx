@@ -19,7 +19,7 @@ const renderList = (transactions: TransactionType[]) => {
             <CircleListItem
                 rightContent={
                     <div className='text-right'>
-                        <p>- {formatAmount(transaction.amount)}</p>
+                        <p>{formatAmount(transaction.amount)}</p>
                         <p className='text-xs text-background/50 capitalize'>
                             {format(new Date(transaction.dated), "EEEE dd/MM/yyyy", { locale: es })}
                         </p>
