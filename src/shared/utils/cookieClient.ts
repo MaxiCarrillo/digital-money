@@ -42,7 +42,7 @@ export const getAllCookies = (): Record<string, string> => {
     const cookiesArray = document.cookie.split(';');
 
     for (let i = 0; i < cookiesArray.length; i++) {
-        let cookie = cookiesArray[i].trim();
+        const cookie = cookiesArray[i].trim();
         const [name, ...valueParts] = cookie.split('=');
         if (name && valueParts.length > 0) {
             cookies[name] = decodeURIComponent(valueParts.join('='));

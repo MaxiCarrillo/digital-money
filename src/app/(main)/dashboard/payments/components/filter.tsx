@@ -1,8 +1,7 @@
 "use client";
 
-import { SearchIcon } from '@/shared/icons'
-import { useRouter, useSearchParams } from 'next/navigation';
-import React, { useState } from 'react'
+import { SearchIcon } from '@/shared/icons';
+import React, { useState } from 'react';
 import { useFilterPayments } from '../hooks/useFilterPayments';
 
 export const PaymentFilter = () => {

@@ -1,7 +1,6 @@
-import React from 'react'
-import { AliasAndCVUInfo } from '../../profile/components/alias-and-cvu-info'
+import { getAcountInfo } from '@/shared/services';
 import { cookies } from 'next/headers';
-import { getAcountInfo, getUserInfo } from '@/shared/services';
+import { AliasAndCVUInfo } from '../../profile/components/alias-and-cvu-info';
 
 const BankPage = async () => {
 

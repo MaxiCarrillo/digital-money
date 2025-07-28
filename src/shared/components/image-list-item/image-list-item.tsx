@@ -1,4 +1,3 @@
-import CircleIcon from '@/shared/icons/circle';
 import Image from 'next/image';
 import { FC, PropsWithChildren, ReactNode } from 'react';
 
@@ -6,11 +5,10 @@ interface ImageListItem extends PropsWithChildren {
     src: string;
     alt: string;
     rightContent?: ReactNode;
-    isPlaceholder?: boolean;
     className?: string;
 }
 
-export const ImageListItem: FC<ImageListItem> = ({ children, rightContent, isPlaceholder, className, src, alt }) => {
+export const ImageListItem: FC<ImageListItem> = ({ children, rightContent, className, src, alt }) => {
     return (
         <li className={`border-b border-b-surface/30 py-2 flex items-center justify-between ${className}`}>
             <div className='flex items-center gap-2'>

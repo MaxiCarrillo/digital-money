@@ -48,7 +48,7 @@ export const MultiStepForm: FC<MultiStepFormProps> = ({ accountInfo, service, ca
         setStep(prev => prev + 1);
     }
 
-    const onSubmit = async (data: PaymentFormData) => {
+    const onSubmit = async () => {
         try {
             const body = {
                 "amount": - Number(service.invoice_value),

@@ -78,7 +78,7 @@ export const useFilterActivity = (
         const search = searchParams.get('search');
         const period = searchParams.get('period');
 
-        setFilters((prev) => ({
+        setFilters(() => ({
             search: search || null,
             periodOption: period || null
         }));

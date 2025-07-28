@@ -1,9 +1,8 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Open_Sans } from "next/font/google";
-import "./globals.css";
-import { Navbar } from "@/shared/components/navbar/navbar";
 import { Footer } from "@/shared/components/footer/footer";
+import type { Metadata } from "next";
+import { Open_Sans } from "next/font/google";
 import { Toaster } from "sonner";
+import "./globals.css";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",

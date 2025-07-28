@@ -1,7 +1,6 @@
 import { CircleListItem } from '@/shared/components';
 import { SearchbarInput } from '@/shared/components/searchbar-input/searchbar-input';
 import ArrowIcon from '@/shared/icons/arrow';
-import CircleIcon from '@/shared/icons/circle';
 import { formatAmount } from '@/shared/utils/formatAmount';
 import { TransactionType } from '@/types';
 import { format } from 'date-fns';

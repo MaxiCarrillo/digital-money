@@ -1,4 +1,6 @@
 import { httpPost } from "@/shared/services/http";
+import { LoginResponse } from "../login/types";
+import { RegisterResponse } from "../register/types";
 
 export async function postLogin(
     body: any,

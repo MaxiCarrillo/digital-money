@@ -2,15 +2,15 @@
 
 import { CircleListItem } from '@/shared/components';
 import { usePagination } from '@/shared/hooks/use-pagination';
+import { FilterIcon } from '@/shared/icons';
 import { formatAmount } from '@/shared/utils';
 import { TransactionType } from '@/types';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import { useFilterActivity } from '../hooks/use-filter-activity';
-import Link from 'next/link';
-import { FilterIcon } from '@/shared/icons';
 import { PeriodFilter } from './period-filter';
 
 const TOTAL_ITEMS_PER_PAGE = 10;
@@ -47,7 +47,7 @@ export const ActivityList: FC<ActivityListProps> = ({ transactions }) => {
 
     useEffect(() => {
         paginate(1);
-    }, [filters]);
+    }, [filters, paginate]);
 
     const handlePageChange = ({ selected }: { selected: number }) => {
         paginate(selected + 1);
